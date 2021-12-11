@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Android/Projects/AndroidStudio/Vladyslav/StarWars/app/src/main/res/drawable/ic_favorite_character.xml" value="0.2703125" />
+        <entry key="..\:/Android/Projects/AndroidStudio/Vladyslav/StarWars/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Android/Projects/AndroidStudio/Vladyslav/StarWars/app/src/main/res/layout/detailed_character_fragment.xml" value="0.264" />
+        <entry key="..\:/Android/Projects/AndroidStudio/Vladyslav/StarWars/app/src/main/res/layout/favorite_characters_fragment.xml" value="0.264" />
+        <entry key="..\:/Android/Projects/AndroidStudio/Vladyslav/StarWars/app/src/main/res/layout/favorite_characters_item.xml" value="0.264" />
+        <entry key="..\:/Android/Projects/AndroidStudio/Vladyslav/StarWars/app/src/main/res/layout/search_screen_fragment.xml" value="0.264" />
+        <entry key="..\:/Android/Projects/AndroidStudio/Vladyslav/StarWars/app/src/main/res/layout/search_screen_item.xml" value="0.264" />
+        <entry key="..\:/Android/Projects/AndroidStudio/Vladyslav/StarWars/app/src/main/res/menu/bottom_nav_menu.xml" value="0.264" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

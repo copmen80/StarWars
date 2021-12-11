@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/app_nav"
+    app:startDestination="@id/searchScreenFragment">
+
+    <fragment
+        android:id="@+id/favoriteCharactersFragment"
+        android:name="ua.devvlad.starwars.favorite.ui.FavoriteCharactersFragment"
+        android:label="FavoriteCharactersFragment" />
+    <fragment
+        android:id="@+id/searchScreenFragment"
+        android:name="ua.devvlad.starwars.search.ui.SearchScreenFragment"
+        android:label="SearchScreenFragment" />
+</navigation>
