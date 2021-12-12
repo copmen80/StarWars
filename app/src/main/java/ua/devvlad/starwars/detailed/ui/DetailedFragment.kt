@@ -20,7 +20,11 @@ class DetailedFragment : Fragment() {
 
     private lateinit var viewModel: DetailedViewModel
 
-    private val adapter = DetailedAdapter()
+    private val filmsAdapter = DetailedAdapter()
+    private val speciesAdapter = DetailedAdapter()
+    private val vehiclesAdapter = DetailedAdapter()
+    private val starshipsAdapter = DetailedAdapter()
+
 
     private val starWarsDto: StarWarsDto by lazy {
         requireNotNull(
@@ -30,7 +34,6 @@ class DetailedFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         viewModel = ViewModelProvider(requireActivity())[DetailedViewModel::class.java]
     }
 
@@ -53,39 +56,55 @@ class DetailedFragment : Fragment() {
             addOrRemoveFav.setOnClickListener {
                 viewModel.changeFavorite(detailedCharacterUIModel.name)
             }
-            tvName.text = detailedCharacterUIModel.name
-            tvHeight.text = detailedCharacterUIModel.height
-            tvMass.text = detailedCharacterUIModel.name
-            tvHairColor.text = detailedCharacterUIModel.name
-            tvEyeColor.text = detailedCharacterUIModel.name
-            tvSkinColor.text = detailedCharacterUIModel.name
-            tvBirthYear.text = detailedCharacterUIModel.name
-            tvGender.text = detailedCharacterUIModel.name
-            tvHomeWorld.text = detailedCharacterUIModel.name
+            val name = "Name: ${detailedCharacterUIModel.name}"
+            tvName.text = name
+            val height = "Height: ${detailedCharacterUIModel.height}"
+            tvHeight.text = height
+            val mass = "Mass: ${detailedCharacterUIModel.mass}"
+            tvMass.text = mass
+            val hairColor = "Hair Color: ${detailedCharacterUIModel.hairColor}"
+            tvHairColor.text = hairColor
+            val eyeColor = "Eye Color: ${detailedCharacterUIModel.eyeColor}"
+            tvEyeColor.text = eyeColor
+            val skinColor = "Skin Color: ${detailedCharacterUIModel.skinColor}"
+            tvSkinColor.text = skinColor
+            val birthYear = "Birth Year: ${detailedCharacterUIModel.birthYear}"
+            tvBirthYear.text = birthYear
+            val gender = "Gender: ${detailedCharacterUIModel.gender}"
+            tvGender.text = gender
+            val homeWorld = "Home World: ${detailedCharacterUIModel.homeworld}"
+            tvHomeWorld.text = homeWorld
             rvFilms.apply {
                 layoutManager = LinearLayoutManager(context)
-                adapter = this@DetailedFragment.adapter
+                adapter = filmsAdapter
                 itemAnimator = null
             }
             rvSpecies.apply {
                 layoutManager = LinearLayoutManager(context)
-                adapter = this@DetailedFragment.adapter
+                adapter = speciesAdapter
                 itemAnimator = null
             }
             rvVehicles.apply {
                 layoutManager = LinearLayoutManager(context)
-                adapter = this@DetailedFragment.adapter
+                adapter = vehiclesAdapter
                 itemAnimator = null
             }
             rvStarships.apply {
                 layoutManager = LinearLayoutManager(context)
-                adapter = this@DetailedFragment.adapter
+                adapter = starshipsAdapter
                 itemAnimator = null
             }
-            tvCreated.text = detailedCharacterUIModel.name
-            tvEdited.text = detailedCharacterUIModel.name
-            tvUrl.text = detailedCharacterUIModel.name
+            val created = "Created: ${detailedCharacterUIModel.created}"
+            tvCreated.text = created
+            val edited = "Edited: ${detailedCharacterUIModel.edited}"
+            tvEdited.text = edited
+            val url = "Url: ${detailedCharacterUIModel.url}"
+            tvUrl.text = url
         }
+        filmsAdapter.submitList(detailedCharacterUIModel.films)
+        speciesAdapter.submitList(detailedCharacterUIModel.species)
+        vehiclesAdapter.submitList(detailedCharacterUIModel.vehicles)
+        starshipsAdapter.submitList(detailedCharacterUIModel.starships)
     }
 
 

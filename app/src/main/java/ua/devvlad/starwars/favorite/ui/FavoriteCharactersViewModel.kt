@@ -41,6 +41,12 @@ class FavoriteCharactersViewModel @Inject constructor(
         }
     }
 
+    fun getFavorite(){
+        viewModelScope.launch {
+            _content.emit(getFavoritesUseCase.invoke())
+        }
+    }
+
     fun deleteFromFavorite(name: String) {
         viewModelScope.launch {
             val dtoToRemove = _content.value.find { it.name == name }

@@ -18,4 +18,5 @@
     <string name="created">Created:</string>
     <string name="edited">Edited:</string>
     <string name="url">Url:</string>
+    <string name="add_remove_favorite">add/remove favorite</string>
 </resources>

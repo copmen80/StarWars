@@ -51,6 +51,7 @@ class FavoriteCharactersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecycler()
         handleViewModel()
+        viewModel.getFavorite()
     }
 
     private fun setupRecycler() {
