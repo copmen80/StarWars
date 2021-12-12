@@ -7,9 +7,38 @@
     <fragment
         android:id="@+id/favoriteCharactersFragment"
         android:name="ua.devvlad.starwars.favorite.ui.FavoriteCharactersFragment"
-        android:label="FavoriteCharactersFragment" />
+        android:label="FavoriteCharactersFragment" >
+        <action
+            android:id="@+id/action_favoriteCharactersFragment_to_detailedFragment"
+            app:destination="@id/detailedFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchScreenFragment"
         android:name="ua.devvlad.starwars.search.ui.SearchScreenFragment"
-        android:label="SearchScreenFragment" />
+        android:label="SearchScreenFragment" >
+        <action
+            android:id="@+id/action_searchScreenFragment_to_detailedFragment"
+            app:destination="@id/detailedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedFragment"
+        android:name="ua.devvlad.starwars.detailed.ui.DetailedFragment"
+        android:label="DetailedFragment" >
+        <argument
+            android:name="detailed_character"
+            app:argType="ua.devvlad.starwars.favorite.data.local.dto.StarWarsDto"/>
+    </fragment>
+
+
+    <!--  <fragment
+          android:id="@+id/fillCodeFragment"
+          android:name="com.cityrangers.drify.auth.ui.fillcode.FillCodeFragment"
+          android:label="FillCodeFragment">
+          <argument
+              android:name="phone"
+              app:argType="string" />
+          <action
+              android:id="@+id/action_fillCodeFragment_to_fillNameFragment"
+              app:destination="@id/fillNameFragment" />
+      </fragment>-->
 </navigation>

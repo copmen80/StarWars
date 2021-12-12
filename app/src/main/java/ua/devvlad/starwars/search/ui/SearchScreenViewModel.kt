@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import ua.devvlad.starwars.favorite.data.local.dto.StarWarsDto
-import ua.devvlad.starwars.favorite.ui.mapper.StarWarsDtoToUiModelMapper
+import ua.devvlad.starwars.favorite.ui.mapper.StarWarsDtoToCharacterUiModelMapper
 import ua.devvlad.starwars.search.domain.AddToFavoriteUseCase
 import ua.devvlad.starwars.search.domain.GetAllCharactersUseCase
 import javax.inject.Inject
@@ -20,14 +20,14 @@ class SearchScreenViewModel @Inject constructor(
     application: Application,
     private val getAllCharactersUseCase: GetAllCharactersUseCase,
     private val addToFavoriteUseCase: AddToFavoriteUseCase,
-    private val starWarsDtoToUiModelMapper: StarWarsDtoToUiModelMapper,
+    private val starWarsDtoToCharacterUiModelMapper: StarWarsDtoToCharacterUiModelMapper,
 ) : AndroidViewModel(application) {
 
     private val _content = MutableStateFlow<List<StarWarsDto>>(emptyList())
     val content = _content
         .asStateFlow()
         .map { list ->
-            list.map { starWarsDtoToUiModelMapper.map(it) }
+            list.map { starWarsDtoToCharacterUiModelMapper.map(it) }
         }
 
     init {

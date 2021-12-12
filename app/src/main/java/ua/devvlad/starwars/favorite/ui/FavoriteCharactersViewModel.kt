@@ -13,7 +13,7 @@ import ua.devvlad.starwars.favorite.data.local.dto.StarWarsDto
 import ua.devvlad.starwars.favorite.domain.DeleteFavoriteUseCase
 import ua.devvlad.starwars.favorite.domain.GetFavoritesUseCase
 import ua.devvlad.starwars.favorite.domain.SubscribeFavoritesUseCase
-import ua.devvlad.starwars.favorite.ui.mapper.StarWarsDtoToUiModelMapper
+import ua.devvlad.starwars.favorite.ui.mapper.StarWarsDtoToCharacterUiModelMapper
 import javax.inject.Inject
 
 
@@ -22,14 +22,14 @@ class FavoriteCharactersViewModel @Inject constructor(
     application: Application,
     private val subscribeFavoritesUseCase: SubscribeFavoritesUseCase,
     private val deleteFavoriteUseCase: DeleteFavoriteUseCase,
-    private val starWarsDtoToUiModelMapper: StarWarsDtoToUiModelMapper,
+    private val starWarsDtoToCharacterUiModelMapper: StarWarsDtoToCharacterUiModelMapper,
     private val getFavoritesUseCase: GetFavoritesUseCase
 ) : AndroidViewModel(application) {
 
     private val _content = MutableStateFlow<List<StarWarsDto>>(emptyList())
     val content = _content.asStateFlow()
         .map { list ->
-            list.map { starWarsDtoToUiModelMapper.map(it) }
+            list.map { starWarsDtoToCharacterUiModelMapper.map(it) }
         }
 
     init {

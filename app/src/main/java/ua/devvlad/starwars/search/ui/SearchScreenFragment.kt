@@ -7,10 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import ua.devvlad.starwars.databinding.SearchScreenFragmentBinding
+import ua.devvlad.starwars.favorite.data.local.dto.StarWarsDto
+import ua.devvlad.starwars.search.ui.adapter.AddToFavorite
+import ua.devvlad.starwars.search.ui.adapter.OpenDetailed
 import ua.devvlad.starwars.search.ui.adapter.SearchAdapter
 
 @AndroidEntryPoint
@@ -18,8 +22,11 @@ class SearchScreenFragment : Fragment() {
     private var _binding: SearchScreenFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private val adapter = SearchAdapter { name ->
-        viewModel.addToFavorite(name)
+    private val adapter = SearchAdapter { event ->
+        when (event) {
+            is AddToFavorite -> viewModel.addToFavorite(event.name)
+            is OpenDetailed -> navigateDetailedFragment(event.starWarsDto)
+        }
     }
 
     private lateinit var viewModel: SearchScreenViewModel
@@ -61,5 +68,13 @@ class SearchScreenFragment : Fragment() {
                 adapter.submitList(list)
             }
         }
+    }
+
+    private fun navigateDetailedFragment(starWarsDto: StarWarsDto) {
+        val action =
+            SearchScreenFragmentDirections.actionSearchScreenFragmentToDetailedFragment(
+                starWarsDto
+            )
+        findNavController().navigate(action)
     }
 }

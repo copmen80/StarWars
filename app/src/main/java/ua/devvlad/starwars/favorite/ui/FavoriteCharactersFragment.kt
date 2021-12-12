@@ -7,11 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import ua.devvlad.starwars.databinding.FavoriteCharactersFragmentBinding
+import ua.devvlad.starwars.favorite.data.local.dto.StarWarsDto
 import ua.devvlad.starwars.favorite.ui.adapter.FavoriteAdapter
+import ua.devvlad.starwars.favorite.ui.adapter.OpenDetailed
+import ua.devvlad.starwars.favorite.ui.adapter.RemoveFromFavorite
 
 @AndroidEntryPoint
 class FavoriteCharactersFragment : Fragment() {
@@ -20,14 +24,18 @@ class FavoriteCharactersFragment : Fragment() {
 
     private lateinit var viewModel: FavoriteCharactersViewModel
 
-    private val adapter = FavoriteAdapter { name ->
-        viewModel.deleteFromFavorite(name)
+    private val adapter = FavoriteAdapter { event ->
+        when (event) {
+            is RemoveFromFavorite -> viewModel.deleteFromFavorite(event.name)
+            is OpenDetailed -> navigateDetailedFragment(event.starWarsDto)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity())[FavoriteCharactersViewModel::class.java]
+        viewModel =
+            ViewModelProvider(requireActivity())[FavoriteCharactersViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -59,5 +67,13 @@ class FavoriteCharactersFragment : Fragment() {
                 adapter.submitList(list)
             }
         }
+    }
+
+    private fun navigateDetailedFragment(starWarsDto: StarWarsDto) {
+        val action =
+            FavoriteCharactersFragmentDirections.actionFavoriteCharactersFragmentToDetailedFragment(
+                starWarsDto
+            )
+        findNavController().navigate(action)
     }
 }

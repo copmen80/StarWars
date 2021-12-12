@@ -1,9 +1,11 @@
 package ua.devvlad.starwars.favorite.data.local.dto
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @Entity(tableName = "character")
 data class StarWarsDto(
     @PrimaryKey
@@ -23,4 +25,4 @@ data class StarWarsDto(
     val created: String,
     val edited: String,
     val url: String,
-)
+) : Parcelable
